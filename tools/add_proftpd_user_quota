@@ -1,0 +1,13 @@
+#!/bin/bash
+
+hostname=$1
+user=$2
+upload_bytes=$3
+
+quota_file=../files/${hostname}-ftpquota.limittab
+
+if [ ! -f "${quota_file}" ]
+then
+./ftpquota --table-path=../files/${hostname}-ftpquota.limittab --create-table --type=limit
+fi
+./ftpquota --table-path=../files/${hostname}-ftpquota.limittab --add-record --type=limit --limit-type=soft --name=${user} --quota-type=user --bytes-upload=${upload_bytes}

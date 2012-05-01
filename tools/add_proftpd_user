@@ -1,0 +1,8 @@
+#!/bin/bash
+
+hostname=$1
+user=$2
+home_dir=$3
+
+./ftpasswd --passwd --md5 --file=../files/${hostname}-ftpd.passwd --name=${user} --home=${home_dir} --shell=/bin/false --uid=33 --gid=33
+chmod +w files/${hostname}-ftpd.passwd
